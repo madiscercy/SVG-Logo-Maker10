@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+    <circle cx="150" cy="100" r="80" fill="white" />
+    <text x="150" y="110" text-anchor="middle" font-size="24" fill="pink">MWS</text>
+</svg>
