@@ -4,7 +4,7 @@ const fs = require('fs');
 const fileName = 'logo.svg'
 const shapes = ['Circle', 'Square', 'Triangle'];
 const { Triangle, Circle, Square } = require('./lib/shapes');
-const svgHeader = '<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">';
+const svgHeader = '<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">';
 const svgFooter = '</svg>';
 
 
@@ -43,7 +43,23 @@ function writeToFile(data) {
 
 
 
+function handleAnswers(answers) {
+  const textElement = `<text x="150" y="110" text-anchor="middle" font-size="24" fill="${answers.textColor}">${answers.characters}</text>`;
+  let shapeAnswer = answers.shape;
+  let shape;
+  if (shapeAnswer === 'Triangle') {
+    shape = new Triangle();
+  } else if (shapeAnswer === 'Circle') {
+    shape = new Circle();
+  } else {
+    shape = new Square();
+  }
 
+  shape.setColor(answers.backgroundColor);
+  const shapeRender = shape.render();
+  const fullSvgContent = `${svgHeader}\n${shapeRender}\n${textElement}\n${svgFooter}`;
+  writeToFile(fullSvgContent);
+}
 
 
 function init() {
